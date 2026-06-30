@@ -8,6 +8,10 @@ on:
                 required: true
                 default: 1
                 type: number
+            custom-instructions:
+                description: 'Extra user provided instructions passed to scenario generator prompt'
+                required: false
+                type: string
 
 jobs:
     generate-benchmarks:
@@ -103,7 +107,7 @@ jobs:
                 emulator-options: -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect -no-snapshot
                 disable-animations: true
                 script: |
-                  cd gelab-zero && python apk_test_agent.py "../apks/org.wikipedia_r_50595.apk" --num_goals ${{ github.event.inputs.benchmarks-count }}
+                  cd gelab-zero && python apk_test_agent.py "../apks/org.wikipedia_r_50595.apk" --num_goals ${{ github.event.inputs.benchmarks-count }} --custom_instructions "${{ github.event.inputs.custom-instructions }}"
 
             - name: Upload gelab-zero log as artifact
               if: always()
