@@ -22,7 +22,7 @@ class GeneratedStartupBenchmark {
 
     @Test
     fun startupTime() = benchmarkRule.measureRepeated(
-        packageName = "com.google.samples.apps.nowinandroid.demo",
+        packageName = "org.wikipedia",
         metrics = listOf(StartupTimingMetric()),
         startupMode = StartupMode.COLD,
         compilationMode = CompilationMode.Partial(
@@ -34,6 +34,6 @@ class GeneratedStartupBenchmark {
     ) {
         startActivityAndWait()
         device.waitForIdle()
-        device.wait(Until.hasObject(By.pkg("com.google.samples.apps.nowinandroid.demo").depth(0)), 5000L)
+        device.wait(Until.hasObject(By.pkg("org.wikipedia").depth(0)), 5000L)
     }
 }
