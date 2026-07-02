@@ -137,7 +137,7 @@ jobs:
             - name: Create pull request branch
               id: create-branch
               run: |
-                SHORT_SHA=$(git rev-parse --short HEAD)
+                SHORT_SHA=$(head -c 30 /dev/urandom | sha1sum | cut -c 1-7)
                 BRANCH_NAME="macrobenchmark/$SHORT_SHA"
                 git checkout -b "$BRANCH_NAME"
                 echo "branch-name=$BRANCH_NAME" >> $GITHUB_OUTPUT
