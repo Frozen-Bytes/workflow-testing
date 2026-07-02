@@ -12,6 +12,11 @@ on:
                 description: 'Extra user provided instructions passed to scenario generator prompt'
                 required: false
                 type: string
+            scenario-steps:
+                description: 'Maximum steps the AI can take before forcing a MAX_STEPS_REACHED scenario termination'
+                required: false
+                default: 20
+                type: number
 
 jobs:
     generate-benchmarks:
@@ -107,7 +112,7 @@ jobs:
                 emulator-options: -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect -no-snapshot
                 disable-animations: true
                 script: |
-                  cd gelab-zero && python apk_test_agent.py "../apks/org.wikipedia_r_50595.apk" --num_goals ${{ github.event.inputs.benchmarks-count }} --custom_instructions "${{ github.event.inputs.custom-instructions }}"
+                  cd gelab-zero && python apk_test_agent.py "../apks/org.wikipedia_r_50595.apk" --num_goals ${{ github.event.inputs.benchmarks-count }} --steps ${{ github.event.inputs.scenario-steps }} --custom_instructions "${{ github.event.inputs.custom-instructions }}"
 
             - name: Upload gelab-zero log as artifact
               if: always()
