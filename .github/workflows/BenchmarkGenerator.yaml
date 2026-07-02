@@ -145,7 +145,7 @@ jobs:
             - name: Convert JSON actions to macrobenchmark files
               run: |
                 git clone https://github.com/Frozen-Bytes/actions-to-macrobenchmark.git
-                python -u actions-to-macrobenchmark/bench_generator.py
+                python -u actions-to-macrobenchmark/bench_generator.py --target-package-name "org.wikipedia"
 
             - name: Commit generated benchmarks
               run: |
