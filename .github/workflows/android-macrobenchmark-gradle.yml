@@ -195,6 +195,10 @@ jobs:
           chmod +x ./gradlew
           ./gradlew :benchmarks:assembleDebug
 
+      - name: List Dirs (Candidate)
+        working-directory: ./candidate
+        run: ls -alR
+
       - name: Android Macrobenchmark CI
         uses: Frozen-Bytes/actions/android-macrobenchmark-ci@v3
         with:
