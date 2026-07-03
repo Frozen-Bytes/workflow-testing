@@ -167,12 +167,14 @@ jobs:
       - name: Checkout branch (Baseline)
         uses: actions/checkout@v4
         with:
+          lfs: true
           ref: ${{ inputs.baseline-branch }}
           path: baseline
 
       - name: Checkout branch (Candidate)
         uses: actions/checkout@v4
         with:
+          lfs: true
           ref: ${{ (inputs.candidate-branch != '' && inputs.candidate-branch) || (github.head_ref != '' && github.head_ref) || github.ref_name }}
           path: candidate
 
